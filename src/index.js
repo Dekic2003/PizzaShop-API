@@ -1,14 +1,17 @@
 let express=require('express');
 let app=express();
-let mongoose=require('mongoose');
+let MongoClient = require('mongoose');
+let bodyParser = require('body-parser');
 
-let pizaaRoute=require('../routes/pizza');
 
-const pass='fJPJR8lTaQfWzd81';
+let pizzaRoute=require('../routes/pizza');
 
-mongoose.connect(`mongodb+srv://deniz:${pass}@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority`);
 
-app.use(pizaaRoute);
+MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true});
+
+app.use(bodyParser.json());
+
+app.use(pizzaRoute);
 app.use(express.static('public'));
 
 const PORT =3000;

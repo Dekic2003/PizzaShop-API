@@ -1,6 +1,6 @@
-let mongoose=require('mongoose');
+let MongoClient = require('mongoose');
 
-let PizzasSchema=mongoose.Schema({
+let PizzasSchema=MongoClient.Schema({
 
     name:{
       type: String,
@@ -22,4 +22,4 @@ let PizzasSchema=mongoose.Schema({
 
 });
 
-module.exports=mongoose.model('Pizzas',PizzasSchema);
+module.exports=MongoClient.model('Pizzas',PizzasSchema);
