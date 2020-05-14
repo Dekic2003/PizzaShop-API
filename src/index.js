@@ -7,9 +7,9 @@ let bodyParser = require('body-parser');
 let pizzaRoute=require('../routes/pizza');
 
 
-MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true}).then(()=>{
-    console.log('proslo');
-})
+MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true});
+console.log('radi');
+
 
 app.use(bodyParser.json());
 
