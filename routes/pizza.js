@@ -34,5 +34,80 @@ router.get('/pizza',(req,res)=>{
 
 });
 
+router.put('/pizza/:id/like',(req,res)=>{
+
+   Pizzas.findById(req.params.id)
+       .then(doc=>{
+           if(doc){
+              Pizzas.findByIdAndUpdate(req.params.id,{'$push':{'rating.likes':req.params.id}},{new:true})
+                  .then((doc, err) => {
+                     if(doc){
+                        res.status(201).json(doc.rating)
+                     }
+                     res.status(500).json(err);
+                  }).catch(err =>{
+                 res.status(500).send(err);
+              })
+           }}
+       )
+
+});
+
+router.put('/pizza/:id/dislike',(req,res)=>{
+
+   Pizzas.findById(req.params.id)
+       .then(doc=>{
+          if(doc){
+             Pizzas.findByIdAndUpdate(req.params.id,{'$push':{'rating.dislikes':req.params.id}},{new:true})
+                 .then((doc, err) => {
+                    if(doc){
+                       res.status(201).json(doc.rating)
+                    }
+                    res.status(500).json(err);
+                 }).catch(err =>{
+                res.status(500).send(err);
+             })
+          }}
+       )
+
+});
+
+router.put('/pizza/likes/clean',(req,res)=>{
+
+   Pizzas.findById(req.body._id)
+       .then(doc=>{
+          if(doc){
+             Pizzas.findByIdAndUpdate(req.body._id,{'$set':{'rating.likes':[]}},{new:true})
+                 .then((doc, err) => {
+                    if(doc){
+                       res.status(201).json(doc.rating)
+                    }
+                    res.status(500).json(err);
+                 }).catch(err =>{
+                res.status(500).send(err);
+             })
+          }}
+       )
+
+});
+
+router.put('/pizza/dislikes/clean',(req,res)=>{
+
+   Pizzas.findById(req.body._id)
+       .then(doc=>{
+          if(doc){
+             Pizzas.findByIdAndUpdate(req.body._id,{'$set':{'rating.dislikes':[]}},{new:true})
+                 .then((doc, err) => {
+                    if(doc){
+                       res.status(201).json(doc.rating)
+                    }
+                    res.status(500).json(err);
+                 }).catch(err =>{
+                res.status(500).send(err);
+             })
+          }}
+       )
+
+})
 
 module.exports=router;
