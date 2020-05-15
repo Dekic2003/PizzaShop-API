@@ -17,6 +17,18 @@ let PizzasSchema=MongoClient.Schema({
     price:{
         type: Number,
         required:true
+    },
+    img:{
+        type:String,
+        required:true
+    },
+    delivery:{
+        type:String,
+        required:true
+    },
+    deliveryPrice:{
+      type:String,
+      required:true
     }
 
 
