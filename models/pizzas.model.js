@@ -26,10 +26,7 @@ let PizzasSchema=MongoClient.Schema({
         type:String,
         required:true
     },
-    deliveryPrice:{
-      type:String,
-      required:true
-    }
+
 
 
 });
