@@ -2,6 +2,7 @@ let express=require('express');
 let app=express();
 let MongoClient = require('mongoose');
 let bodyParser = require('body-parser');
+let cors=require('cors');
 
 
 let pizzaRoute=require('../routes/pizza');
@@ -11,6 +12,9 @@ MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?
 console.log('radi');
 
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(bodyParser.json());
 
 app.use(pizzaRoute);
