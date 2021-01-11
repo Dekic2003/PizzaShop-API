@@ -6,10 +6,10 @@ let cors=require('cors');
 
 
 let pizzaRoute=require('../routes/pizza');
+let authRoute=require('../routes/auth');
 
 
 MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true});
-console.log('radi');
 
 
 app.use(cors({
@@ -18,6 +18,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.use(pizzaRoute);
+app.use(authRoute);
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;
