@@ -1,10 +1,9 @@
 let MongoClient=require('mongoose')
 
-const UserSchema=new MongoClient.Schema({
+const userSchema=new MongoClient.Schema({
     name:{
         type:String,
         required:true,
-        min:6,
         max:255
     },
     email:{
@@ -23,4 +22,5 @@ const UserSchema=new MongoClient.Schema({
     }
 })
 
+module.exports=MongoClient.model('User',userSchema);
 

@@ -9,7 +9,9 @@ let pizzaRoute=require('../routes/pizza');
 let authRoute=require('../routes/auth');
 
 
-MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true});
+MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true},()=>{
+    console.log('DB Connected');
+});
 
 
 app.use(cors({
