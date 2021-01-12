@@ -2,14 +2,17 @@ let express=require('express');
 let app=express();
 let MongoClient = require('mongoose');
 let bodyParser = require('body-parser');
+let dotenv=require('dotenv')
 let cors=require('cors');
+
+dotenv.config();
 
 
 let pizzaRoute=require('../routes/pizza');
 let authRoute=require('../routes/auth');
 
 
-MongoClient.connect('mongodb+srv://deniz:deniz@pizzashop-cpxuq.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true},()=>{
+MongoClient.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology: true},()=>{
     console.log('DB Connected');
 });
 
