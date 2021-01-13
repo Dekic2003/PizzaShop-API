@@ -40,8 +40,10 @@ router.post('/login', async (req,res)=>{
     const validPass=await bcrypt.compare(req.body.password,user.password);
     if(!validPass) return res.status(400).send('Password incorrect');
 
-    const token=jwt.sign({_id:user._id},process.env.TOKEN_KEY)
-    res./*header('auth-token',token)*/json({status:'Logged in',token:token})
+    const refreshToken=jwt.sign({_id:user._id},process.env.TOKEN_KEY,{expiresIn:'24h'})
+    const accessToken=jwt.sign({name:user.name, _id:user._id},process.env.TOKEN_KEY,{expiresIn:'60s'})
+
+    res.json({accessToken:accessToken,refreshToken:refreshToken,user:{ name: user.name}})
 
 })
 
