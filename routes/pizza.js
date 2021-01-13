@@ -1,6 +1,7 @@
 let express=require('express');
 let router=express.Router();
 let Pizzas=require('../models/pizzas.model');
+let verifyToken=require('../validation/verifyToken')
 
 router.post('/pizza',(req,res)=>{
    if(!req.body){
@@ -20,7 +21,7 @@ router.post('/pizza',(req,res)=>{
        })
 });
 
-router.get('/pizza',(req,res)=>{
+router.get('/pizza',verifyToken,(req,res)=>{
 
    Pizzas.find()
        .then((doc,err)=>{
