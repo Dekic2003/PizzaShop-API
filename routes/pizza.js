@@ -1,9 +1,9 @@
 let express=require('express');
 let router=express.Router();
 let Pizzas=require('../models/pizzas.model');
-let verifyToken=require('../validation/verifyToken')
+const verifyToken =require('../validation/verifyToken')
 
-router.post('/pizza',(req,res)=>{
+router.post('/pizza',verifyToken,(req,res)=>{
    if(!req.body){
       return res.status(400).send('Req body missing');
    }
@@ -35,7 +35,7 @@ router.get('/pizza',verifyToken,(req,res)=>{
 
 });
 
-router.put('/pizza/:id/like',(req,res)=>{
+router.put('/pizza/:id/like',verifyToken,(req,res)=>{
 
    Pizzas.findById(req.params.id)
        .then(doc=>{
@@ -54,7 +54,7 @@ router.put('/pizza/:id/like',(req,res)=>{
 
 });
 
-router.put('/pizza/:id/dislike',(req,res)=>{
+router.put('/pizza/:id/dislike',verifyToken,(req,res)=>{
 
    Pizzas.findById(req.params.id)
        .then(doc=>{
@@ -73,7 +73,7 @@ router.put('/pizza/:id/dislike',(req,res)=>{
 
 });
 
-router.put('/pizza/likes/clean',(req,res)=>{
+router.put('/pizza/likes/clean',verifyToken,(req,res)=>{
 
    Pizzas.findById(req.body._id)
        .then(doc=>{
@@ -92,7 +92,7 @@ router.put('/pizza/likes/clean',(req,res)=>{
 
 });
 
-router.put('/pizza/dislikes/clean',(req,res)=>{
+router.put('/pizza/dislikes/clean',verifyToken,(req,res)=>{
 
    Pizzas.findById(req.body._id)
        .then(doc=>{

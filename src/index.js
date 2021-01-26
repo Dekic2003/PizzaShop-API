@@ -10,6 +10,7 @@ dotenv.config();
 
 let pizzaRoute=require('../routes/pizza');
 let authRoute=require('../routes/auth');
+let refreshRoute=require('../routes/refresh');
 
 
 MongoClient.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology: true},()=>{
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 app.use(pizzaRoute);
 app.use(authRoute);
+app.use(refreshRoute);
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;
