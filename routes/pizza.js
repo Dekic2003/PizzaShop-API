@@ -22,7 +22,6 @@ router.post('/pizza',verifyToken,(req,res)=>{
 });
 
 router.get('/pizza',verifyToken,(req,res)=>{
-
    Pizzas.find()
        .then((doc,err)=>{
           if(doc){
